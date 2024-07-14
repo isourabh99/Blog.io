@@ -1,0 +1,21 @@
+<%-include("partials/header")%>
+<%-include("partials/nav")%>
+<main class="min-h-screen w-full bg-sky-100 pt-[20vh] px-10 ">
+    <section class="h-[50vh] w-[50vh] px-5 py-20  flex items-start justify-center flex-col">
+        <form action="/users/signup" method="post">
+            <input class="w-full mb-6 px-2 py-2 text-xl rounded outline-none bg-sky-100 border-2 border-[#3c4c45]"
+                type="text" name="profilepic" placeholder="Enter image URL">
+            <input class="w-full mb-6 px-2 py-2 text-xl rounded outline-none bg-sky-100 border-2 border-[#3c4c45]"
+                type="text" name="username" placeholder="Enter username">
+            <input class="w-full mb-6 px-2 py-2 text-xl rounded outline-none bg-sky-100 border-2 border-[#3c4c45]"
+                type="email" name="email" placeholder="Enter email">
+            <input class="w-full mb-6 px-2 py-2 text-xl rounded outline-none bg-sky-100 border-2 border-[#3c4c45]"
+                type="password" name="password" placeholder="********">
+            <button class="bg-[#8cc9c9] px-4 py-1 text-xl rounded hover:opacity-[.8]">Sign Up</button>
+            <p class="mt-7">Already have an account ? <a href="/login"
+                    class="text-[#8cc9c9] hover:text-black duration-500">Click to login <i
+                        class="ri-arrow-right-line"></i></a></p>
+        </form>
+    </section>
+</main>
+<%-include("partials/footer")%>
