@@ -24,10 +24,12 @@ exports.postSignup = async function (req, res, next) {
   }
 };
 
-exports.getProfile=(req,res,next)=>{
+exports.getProfile=async(req,res,next)=>{
+
   res.render("profile",{
-    title:"Profile"
+    title:"Profile",user:req.user
   })
 }
+
 
 // TODO create login,logout 

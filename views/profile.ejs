@@ -1,8 +1,17 @@
 <%-include("partials/header")%>
 <%-include("partials/nav")%>
-<main class="min-h-screen w-full bg-sky-100 pt-[20vh] px-10 ">
-   
+<main class="min-h-screen w-full bg-sky-100 pt-[10vh] px-10 ">
+    <div class="h-[30vh] w-[40vw] bg-red-100 mx-auto rounded-lg flex items-center justify-center">
+        <div class="h-[15vh w-[15vh] rounded-full overflow-hidden">
+            <img class="" src="<%=user.profilepic%>" alt="no image">
+        </div>
+     <div>
+          <h1 class="ml-20 font-semibold text-2xl "><%=user.username%></h1>
+          <h1 class="ml-20"><%=user.email%></h1>
+     </div>
 
-    
+   </div>
+
+    <a href="/users/logout">logout</a>
 </main>
 <%-include("partials/footer")%>
