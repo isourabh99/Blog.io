@@ -8,6 +8,8 @@ const mongoose=require("mongoose")
 const passport = require("passport");
 const session = require("express-session");
 const userModel = require("./models/userModel");
+const expressFileUpload=require("express-fileupload")
+
 
 
 
@@ -16,6 +18,7 @@ const connectionDB=require("./config/DBConnection").connectionDB()
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const { log } = require("console");
 
 var app = express();
 
@@ -31,14 +34,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// * use session 
+// *use express-fileupload
+app.use(expressFileUpload())
 
+// *session set before setting the routes for Routers
 app.use(session({
   secret:process.env.SECRET,
   resave:false,
   saveUninitialized:true
 }))
-
+// *initialize passport and use session 
 app.use(passport.initialize())
 app.use(passport.session())
 passport.serializeUser(userModel.serializeUser());

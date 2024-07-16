@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const { postSignup,getProfile } = require("../controllers/usersController");
+const { postSignup,getProfile,postUploadAvatar } = require("../controllers/usersController");
 const passport = require("passport");
 const {isLoggedIn}=require("../middleware/auth")
 
@@ -16,11 +16,15 @@ router.post("/login",passport.authenticate("local",{
     failureRedirect:"/login"
 }),(req,res,next)=>{})
 
-// *Get Logout route
+// *GET Logout route
 router.get("/logout",isLoggedIn,(req,res,next)=>{
 req.logOut(()=>{
     res.redirect("/")
 })
 })
+
+// *POST uploadAvatar/id route
+router.post("/uploadAvatar/:id",isLoggedIn,postUploadAvatar)
+
 
 module.exports = router;

@@ -1,17 +1,51 @@
 <%-include("partials/header")%>
 <%-include("partials/nav")%>
 <main class="min-h-screen w-full bg-sky-100 pt-[10vh] px-10 ">
-    <div class="h-[30vh] w-[40vw] bg-red-100 mx-auto rounded-lg flex items-center justify-center">
-        <div class="h-[15vh w-[15vh] rounded-full overflow-hidden">
-            <img class="" src="<%=user.profilepic%>" alt="no image">
+
+    <section class="h-[30vh] w-[40vw] mx-auto rounded-lg text-center mt-10">
+
+        <div class="userProfile h-[15vh] w-[15vh] rounded-full overflow-hidden mx-auto flex items-center justify-center">
+            <img class="h-full w-full object-cover" src="<%=user.profile%>" alt="no image">
+            <form class="avatarForm hidden" action="/users/uploadAvatar/<%=user._id%>" method="post" enctype="multipart/form-data">
+                <input type="file" class="avatarInput" name="avatar">
+            </form>
         </div>
-     <div>
-          <h1 class="ml-20 font-semibold text-2xl "><%=user.username%></h1>
-          <h1 class="ml-20"><%=user.email%></h1>
-     </div>
 
-   </div>
+        <div class="userDetails mt-5 mx-auto">
+            <h1 class="font-semibold text-2xl"><%=user.username%></h1>
+            <h1><%=user.bio%></h1>
+        </div>
 
-    <a href="/users/logout">logout</a>
+        <div class="userOptions mt-4 mx-auto">
+            <a class="inline-block bg-[#8cc9c9] px-6 py-1 rounded mb-2 text-center hover:opacity-[.7]"
+                href="/users/edit">Edit</a>
+            <a class="inline-block bg-[#8cc9c9] px-4 py-1 rounded hover:opacity-[.7]" href="/users/logout">Logout</a>
+        </div>
+    </section>
+
+
+    <section class="blogs min-h-screen bg-white p-10 ">
+        <h1 class="italic text-2xl mb-10">Your Blogs...</h1>
+        <div class="h-[50vh] w-[25vw] bg-zinc-100 rounded-md overflow-hidden">
+
+
+        </div>
+
+    </section>
+
+
+
 </main>
+
+<script>
+    const userProfile=document.querySelector(".userProfile")
+    const avatarForm=document.querySelector(".avatarForm")
+    const avatarInput=document.querySelector(".avatarInput")
+    userProfile.addEventListener("click",(()=>{
+        avatarInput.click()
+    }))
+    avatarInput.addEventListener("change",(()=>{
+        avatarForm.submit()
+    }))
+</script>
 <%-include("partials/footer")%>

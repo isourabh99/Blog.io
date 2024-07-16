@@ -1,6 +1,7 @@
 const userModel = require("../models/userModel");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const imagekit = require("../utils/imagekit");
 passport.use(new LocalStrategy(userModel.authenticate()));
 
 exports.postSignup = async function (req, res, next) {
@@ -24,12 +25,19 @@ exports.postSignup = async function (req, res, next) {
   }
 };
 
-exports.getProfile=async(req,res,next)=>{
+exports.getProfile = async (req, res, next) => {
+  res.render("profile", {
+    title: "Profile",
+    user: req.user,
+  });
+};
 
-  res.render("profile",{
-    title:"Profile",user:req.user
-  })
+exports.postUploadAvatar = async (req, res, next) => {
+try {
+    console.log(req.files);
+    console.log(req.user);
+} catch (error) {
+  console.log(error);
+  res.send(error.message)
 }
-
-
-// TODO create login,logout 
+};
