@@ -11,10 +11,13 @@ const userSchema = new mongoose.Schema({
       ref: "blogs",
     },
   ],
-  profile: {
-    type: String,
-    default:"https://i.pinimg.com/564x/11/e7/5c/11e75c046476eb24c2c7c99f146b6c29.jpg",
-
+  DP: {
+    fileId: String,
+    url: {
+      type: String,
+      default: "https://ik.imagekit.io/lmh4shp8d/1?updatedAt=1720341746483",
+    },
+    thumbnailUrl: String,
   },
 });
 userSchema.plugin(plm);

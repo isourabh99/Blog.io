@@ -33,11 +33,21 @@ exports.getProfile = async (req, res, next) => {
 };
 
 exports.postUploadAvatar = async (req, res, next) => {
-try {
-    console.log(req.files);
-    console.log(req.user);
-} catch (error) {
-  console.log(error);
-  res.send(error.message)
-}
+  try {
+    const { fileId, url, thumbnailUrl } = await imagekit.upload({
+      file: req.files.DP.data,
+      fileName: req.files.DP.name,
+    });
+    if (req.user.DP.fileId) {
+      await imagekit.deleteFile(req.user.DP.fileId);
+    }
+    req.user.DP = { fileId, url, thumbnailUrl };
+    await req.user.save();
+    // console.log(req.user);
+    // console.log(req.files);
+    res.redirect("/users/profile");
+  } catch (error) {
+    console.log(error);
+    res.send(error.message);
+  }
 };
